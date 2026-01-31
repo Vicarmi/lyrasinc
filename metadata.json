@@ -1,0 +1,13 @@
+
+{
+  "name": "LyraSync - Smart Lyrics Companion",
+  "description": "A high-performance lyrics viewer integrated with LRCLIB. Experience synced lyrics with a beautiful, immersive UI designed for mobile devices.",
+  "requestFramePermissions": [
+    "microphone",
+    "camera"
+  ],
+  "androidPermissions": [
+    "android.permission.INTERNET",
+    "android.permission.MODIFY_AUDIO_SETTINGS"
+  ]
+}

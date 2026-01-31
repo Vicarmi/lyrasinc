@@ -1,0 +1,13 @@
+
+{
+  "appId": "com.lyrasync.app",
+  "appName": "LyraSync",
+  "webDir": ".",
+  "bundledWebRuntime": false,
+  "server": {
+    "androidScheme": "https"
+  },
+  "android": {
+    "allowMixedContent": true
+  }
+}
