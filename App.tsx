@@ -17,6 +17,7 @@ const App: React.FC = () => {
   const [analysisText, setAnalysisText] = useState('');
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [wakeLock, setWakeLock] = useState<any>(null);
+  const [showInstallHelp, setShowInstallHelp] = useState(false);
 
   // Wake Lock Logic: Keep screen on while reading lyrics
   useEffect(() => {
@@ -103,6 +104,13 @@ const App: React.FC = () => {
 
       {!currentTrack && (
         <div className="relative z-10 flex flex-col items-center justify-center h-full px-6 animate-in fade-in duration-700">
+          <button 
+            onClick={() => setShowInstallHelp(true)}
+            className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/40 active:bg-white/10"
+          >
+            <i className="fas fa-question text-sm"></i>
+          </button>
+
           <div className="mb-12 text-center">
             <div className="w-20 h-20 bg-gradient-to-br from-white to-white/20 rounded-3xl mx-auto mb-6 flex items-center justify-center shadow-2xl rotate-3">
               <i className="fas fa-music text-black text-3xl"></i>
@@ -163,6 +171,35 @@ const App: React.FC = () => {
             onSeek={setCurrentTime} 
             onClose={() => setCurrentTrack(null)} 
           />
+        </div>
+      )}
+
+      {/* Installation Help Modal */}
+      {showInstallHelp && (
+        <div className="fixed inset-0 z-[110] bg-black/90 backdrop-blur-md flex items-center justify-center p-6">
+          <div className="bg-neutral-900 border border-white/10 w-full max-w-sm rounded-[2.5rem] p-8 animate-in zoom-in duration-300">
+            <h3 className="text-2xl font-black mb-6">Guía de Instalación APK</h3>
+            <ul className="space-y-6 text-white/70">
+              <li className="flex gap-4">
+                <div className="w-8 h-8 rounded-full bg-white/10 flex-shrink-0 flex items-center justify-center text-white font-bold">1</div>
+                <p>Si Android bloquea la instalación, ve a <b>Ajustes > Seguridad</b> y activa <b>"Instalar apps de fuentes desconocidas"</b>.</p>
+              </li>
+              <li className="flex gap-4">
+                <div className="w-8 h-8 rounded-full bg-white/10 flex-shrink-0 flex items-center justify-center text-white font-bold">2</div>
+                <p>Si aparece un aviso de <b>Play Protect</b>, pulsa en "Más detalles" y luego en <b>"Instalar de todas formas"</b>.</p>
+              </li>
+              <li className="flex gap-4">
+                <div className="w-8 h-8 rounded-full bg-white/10 flex-shrink-0 flex items-center justify-center text-white font-bold">3</div>
+                <p>Usa solo el archivo <b>.apk</b>. El archivo .aab es solo para subir a la tienda oficial.</p>
+              </li>
+            </ul>
+            <button 
+              onClick={() => setShowInstallHelp(false)}
+              className="w-full py-4 mt-8 bg-white text-black rounded-2xl font-black active:scale-95 transition-all"
+            >
+              Entendido
+            </button>
+          </div>
         </div>
       )}
 
